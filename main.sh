@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MY_DIR=$(dirname $0)
 RESOURCES="${MY_DIR}/resources"
