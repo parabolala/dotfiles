@@ -1,0 +1,3 @@
+# Ctrl-W deletes just the last word.
+stty werase undef
+bind '"\C-w": backward-kill-word'
