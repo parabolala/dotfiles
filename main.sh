@@ -9,7 +9,7 @@ RESOURCES="${MY_DIR}/resources"
   fg_white="$(tput setaf 7)"
   reset="$(tput sgr0)"
   function p {
-    echo "${fg_white}${fg_bold}$@${fg_reset}"
+    echo "    ${fg_white}${fg_bold}$@${fg_reset}"
   }
   function p2 {
   echo "${fg_green}$1${fg_reset}: "$(p $2)
@@ -29,31 +29,33 @@ p2 Installing .inputrc
 if [ ! -f $HOME/.inputrc ]; then
   cp "${RESOURCES}/inputrc" "$HOME/.inputrc"
 else
-  p "    Already exists, skipped."
+  p "Already exists, skipped."
 fi
 
 p2 Injecting .bash_profile
 PROFILE_RESOURCE="$RESOURCES/bash_profile"
 if [ -f ~/.bash_profile ] && grep -q $PROFILE_RESOURCE $HOME/.bash_profile; then
-  p "    Already injected $PROFILE_RESOURCE"
+  p "Already injected $PROFILE_RESOURCE"
 else
-  p "    source $PROFILE_RESOURCE >> ~/.bash_profile"
+  p "source $PROFILE_RESOURCE >> ~/.bash_profile"
   echo "source $PROFILE_RESOURCE" >> ~/.bash_profile
 fi
 
 p2 Installing vimfiles
 if [ -f ~/.vimrc ]; then
-  p "    ~/.vimrc already present, skipping"
+  p "~/.vimrc already present, skipping"
 else
-  if which vim >/dev/null; then
+  if which vim > /dev/null; then
     if vim --version | head -n1 | grep -q 7.3; then
-      pushd $HOME
-      git clone http://github.com/xa4a/vimfiles .vim
+      pushd $HOME > /dev/null
+      git clone http://github.com/xa4a/vimfiles .vim > /dev/null
       ln -s .vim/vimrc .vimrc
       cd .vim
+      p "Pulling Vundle"
       git submodule update --init bundle/vundle
+      p "Pulling all other modules"
       vim -u vundle_install.vimrc
-      popd
+      popd > /dev/null
     else
       p "Vim 7.3 is required."
     fi
