@@ -52,6 +52,7 @@ else
       ln -s .vim/vimrc .vimrc
       cd .vim
       git submodule update --init bundle/vundle
+      vim -u vundle_install.vimrc
       popd
     else
       p "Vim 7.3 is required."
