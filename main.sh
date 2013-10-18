@@ -1,6 +1,7 @@
 #!/bin/bash
 
-MY_DIR=$(dirname $0)
+MY_NAME=$(readlink -m $0)
+MY_DIR=$(dirname $MY_NAME)
 RESOURCES="${MY_DIR}/resources"
 
 [ $(tput colors) -ge 8 ] && {
