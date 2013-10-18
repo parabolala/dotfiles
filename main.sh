@@ -1,7 +1,6 @@
 #!/bin/sh
 
-MY_NAME=$(realpath $0)
-MY_DIR=$(dirname $MY_NAME)
+MY_DIR=$(dirname $0)
 RESOURCES="${MY_DIR}/resources"
 
 [ $(tput colors) -ge 8 ] && {
@@ -46,7 +45,7 @@ p2 Installing vimfiles
 if [ -f ~/.vimrc ]; then
   p "    ~/.vimrc already present, skipping"
 else
-  if which -s vim; then
+  if which vim >/dev/null; then
     if vim --version | head -n1 | grep -q 7.3; then
       pushd $HOME
       git clone http://github.com/xa4a/vimfiles .vim
