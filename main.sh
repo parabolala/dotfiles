@@ -50,6 +50,8 @@ else
       pushd $HOME
       git clone http://github.com/xa4a/vimfiles .vim
       ln -s .vim/vimrc .vimrc
+      cd .vim
+      git submodule update --init bundle/vundle
       popd
     else
       p "Vim 7.3 is required."
