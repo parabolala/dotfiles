@@ -51,6 +51,7 @@ else
       pushd $HOME > /dev/null
       git clone http://github.com/xa4a/vimfiles .vim > /dev/null
       ln -s .vim/vimrc .vimrc
+      mkdir -p ~/.undo
       cd .vim
       p "Pulling Vundle"
       git submodule update --init bundle/vundle
