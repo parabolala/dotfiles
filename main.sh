@@ -28,7 +28,7 @@ p "Preparing environment: "
 
 p2 Installing .inputrc
 if [ ! -f $HOME/.inputrc ]; then
-  cp "${RESOURCES}/inputrc" "$HOME/.inputrc"
+  ln -s "${RESOURCES}/inputrc" "$HOME/.inputrc"
 else
   p "Already exists, skipped."
 fi
@@ -64,4 +64,11 @@ else
   else
     p "vim executable was not found in \$PATH"
   fi
+fi
+
+p2 Installing .screenrc
+if [ ! -f $HOME/.screenrc ]; then
+  ln -s "${RESOURCES}/screenrc" "$HOME/.screenrc"
+else
+  p "Already exists, skipped."
 fi
