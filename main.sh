@@ -72,3 +72,10 @@ if [ ! -f $HOME/.screenrc ]; then
 else
   p "Already exists, skipped."
 fi
+
+p2 Installing .ssh/rc
+if [ ! -f $HOME/.ssh/rc ]; then
+  ln -s "${RESOURCES}/ssh_rc" "$HOME/.ssh/rc"
+else
+  p "Already exists, skipped."
+fi
