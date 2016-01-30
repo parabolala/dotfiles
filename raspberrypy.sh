@@ -1,7 +1,7 @@
 #!/bin/sh
 
-apt-get update
-apt-get install git screen
+sudo apt-get update
+sudo apt-get install git screen
 
 mkdir ~/local_src
 cd ~/local_src
