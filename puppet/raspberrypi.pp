@@ -46,7 +46,7 @@ class { 'netatalk':
 netatalk::volume { 'timecapsule':
   path => $timecapsule_path,
   volume_name => 'RPi Time Capsule',
-  options => 'options:tm volsize:1000000 allow:@${afp_users}',
+  options => "options:tm volsize:1000000 allow:@${afp_users}",
   require => File[$timecapsule_path],
 }
 
@@ -60,6 +60,6 @@ file { $share_path:
 netatalk::volume { 'share':
   path => $share_path,
   volume_name => 'NAS',
-  options => 'allow:@${afp_users}',
+  options => "allow:@${afp_users}",
   require => File[$share_path],
 }
