@@ -20,6 +20,7 @@ PUPPET_MODULE_PATH="`pwd`/puppet/modules"
 puppet module --verbose install --modulepath=$PUPPET_MODULE_PATH puppetlabs-stdlib --version=4.11.0
 puppet module --verbose install --modulepath=$PUPPET_MODULE_PATH puppetlabs-concat --version=2.1.0
 puppet module --verbose install --modulepath=$PUPPET_MODULE_PATH jfryman-nginx --version=0.2.7 --ignore-dependencies
+puppet module --verbose install --modulepath=$PUPPET_MODULE_PATH puppetlabs-apt --ignore-dependencies
 
 NETATALK_MODULE="rcoleman-netatalk-0.3.0.tar.gz"
 wget https://github.com/xa4a/puppet-netatalk/releases/download/0.3.0-deps-fix/$NETATALK_MODULE -O /tmp/$NETATALK_MODULE
