@@ -49,7 +49,7 @@ else
   if which vim > /dev/null; then
     if vim --version | head -n1 | grep -q '7.[^012]'; then
       pushd $HOME > /dev/null
-      git clone http://github.com/xa4a/vimfiles .vim > /dev/null
+      git clone http://github.com/xa4a/vimfiles.git .vim > /dev/null
       ln -s .vim/vimrc .vimrc
       mkdir -p ~/.undo
       cd .vim
