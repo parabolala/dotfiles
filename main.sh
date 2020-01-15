@@ -49,14 +49,12 @@ else
   if which vim > /dev/null; then
     if vim --version | head -n1 | grep -q '7.[^012]'; then
       pushd $HOME > /dev/null
-      git clone http://github.com/xa4a/vimfiles .vim > /dev/null
+      git clone git@github.com:xa4a/vimfiles.git .vim > /dev/null
       ln -s .vim/vimrc .vimrc
       mkdir -p ~/.undo
       cd .vim
-      p "Pulling Vundle"
-      git submodule update --init bundle/vundle
-      p "Pulling all other modules"
-      vim -u vundle_install.vimrc
+      p "Installing modules modules"
+      vim -u plug_install.vimrc
       popd > /dev/null
     else
       p "Vim 7.3 is required."
