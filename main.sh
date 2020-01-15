@@ -53,7 +53,7 @@ else
       ln -s .vim/vimrc .vimrc
       mkdir -p ~/.undo
       cd .vim
-      p "Installing modules modules"
+      p "Installing Vim modules"
       vim -u plug_install.vimrc
       popd > /dev/null
     else

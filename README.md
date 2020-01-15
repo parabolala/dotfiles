@@ -4,7 +4,7 @@ The repository contains the bare minimum I want to see on every unix shell envir
 
 The invocation should be just as simple as:
 
-    git clone http://github.com/xa4a/dotfiles
+    git clone --recursive http://github.com/xa4a/dotfiles
     cd dotfiles && ./main.sh
 
 The steps performed by the script are described below.
