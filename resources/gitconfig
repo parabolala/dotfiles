@@ -1,0 +1,24 @@
+[core]
+    autocrlf = input
+    safecrlf = true
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[push]
+    default = current
+[alias]
+    srv = daemon --reuseaddr --verbose --base-path=. --export-all
+    dt = difftool
+    ci = commit
+    di = diff --color-words
+    st = status
+    co = checkout
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[user]
+    name = Ievgen Varavva
+    email = fuzzy.parabola@gmail.com

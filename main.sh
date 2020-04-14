@@ -77,3 +77,10 @@ if [ ! -f $HOME/.ssh/rc ]; then
 else
   p "Already exists, skipped."
 fi
+
+p2 Installing .gitconfig
+if [ ! -f $HOME/.gitconfig ]; then
+  ln -s "${RESOURCES}/gitconfig" "$HOME/.gitconfig"
+else
+  p "Already exists, skipped."
+fi
