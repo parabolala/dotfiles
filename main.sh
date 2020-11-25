@@ -33,6 +33,14 @@ else
   p "Already exists, skipped."
 fi
 
+p2 Installing .zshenv
+if [ ! -f $HOME/.zshenv ]; then
+  ln -s "${RESOURCES}/zshenv" "$HOME/.zshenv"
+  ln -s "${RESOURCES}/zsh" "$HOME/.zsh"
+else
+  p "Already exists, skipped."
+fi
+
 p2 Injecting .bash_profile
 PROFILE_RESOURCE="$RESOURCES/bash_profile"
 if [ -f ~/.bash_profile ] && grep -q $PROFILE_RESOURCE $HOME/.bash_profile; then
@@ -47,7 +55,7 @@ if [ -f ~/.vimrc ]; then
   p "~/.vimrc already present, skipping"
 else
   if which vim > /dev/null; then
-    if vim --version | head -n1 | grep -q '7.[^012]'; then
+    if vim --version | head -n1 | grep -q '7.[^012]\|8\.'; then
       pushd $HOME > /dev/null
       git clone git@github.com:xa4a/vimfiles.git .vim > /dev/null
       ln -s .vim/vimrc .vimrc
