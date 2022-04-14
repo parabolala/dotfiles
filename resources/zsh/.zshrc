@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
+
 # MacPorts Installer addition on 2020-11-24_at_15:35:47: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:/opt/local/libexec/gnubin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
@@ -20,10 +24,13 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home
-alias ibazel=/Users/jenia/src/bazel-watcher/bazel-bin/ibazel/darwin_amd64_pure_stripped/ibazel
-alias vi=/Applications/MacVim.app/Contents/bin/mvim
+alias ibazel=/Users/jenia/src/bazel-watcher/bazel-bin/ibazel/ibazel_/ibazel
+MVIM=/Applications/MacVim.app/Contents/bin/mvim
+alias vi=$MVIM
 alias gl='git log --oneline -10'
 alias ga='git ci --amend'
+
+export WORDCHARS=${WORDCHARS/-\///}
 
 my-backward-delete-word() {
     local WORDCHARS=""
@@ -35,38 +42,26 @@ bindkey '^W' my-backward-delete-word
 setopt autocd
 
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-SAVEHIST=50000000
-HISTSIZE=20000000
-# share history across multiple zsh sessions
-setopt SHARE_HISTORY
-# append to history
-setopt APPEND_HISTORY
-# expire duplicates first
-setopt HIST_EXPIRE_DUPS_FIRST 
-# do not store duplications
-setopt HIST_IGNORE_DUPS
 #ignore duplicates when searching
 setopt HIST_FIND_NO_DUPS
-# removes blank lines from history
-setopt HIST_REDUCE_BLANKS
 
-setopt histverify
+source ~/.zsh/history_config.zsh
 
-# The following lines were added by compinstall
-
-zstyle ':completion:*' completer _complete _ignored
-zstyle :compinstall filename '/Users/jenia/.zsh/.zshrc'
-
-export fpath[1,0]=~/.zsh/completion
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+## The following lines were added by compinstall
 #
-# load bashcompinit for some old bash completions 
-autoload bashcompinit && bashcompinit
+#zstyle ':completion:*' completer _complete _ignored
+#zstyle :compinstall filename '/Users/jenia/.zsh/.zshrc'
+#
+#export fpath[1,0]=~/.zsh/completion
+#zstyle ':completion:*' use-cache on
+#zstyle ':completion:*' cache-path ~/.zsh/cache
+#
+#autoload -Uz compinit
+#compinit
+## End of lines added by compinstall
+##
+## load bashcompinit for some old bash completions 
+#autoload bashcompinit && bashcompinit
 
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -85,8 +80,6 @@ export PATH=$PATH:/Users/jenia/bin:/Users/jenia/Library/Python/3.8/bin
 alias gitst="git st"
 alias gb="git branch"
 
-export GOOGLE_APPLICATION_CREDENTIALS=$HOME/yes-key.json
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jenia/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jenia/src/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -98,3 +91,27 @@ alias bazel='nocorrect bazel '
 
 
 export GOPRIVATE=bitbucket.org/ferriswheeldotai/*
+alias k=kubectl
+
+export EDITOR=vim
+
+PATH=$PATH:/Users/jenia/Library/Python/3.8/bin
+
+
+export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.8'
+export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.8'
+export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.8'
+source /opt/local/bin/virtualenvwrapper.sh-3.8
+
+alias reload="source ~/.zsh/.zshrc"
+
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin:/Users/jenia/.platformio/penv/bin"
+
+source /opt/local/share/nvm/init-nvm.sh
+
+alias cat=bat
+alias df=duf
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
+
