@@ -55,7 +55,7 @@ if [ -f ~/.vimrc ]; then
   p "~/.vimrc already present, skipping"
 else
   if which vim > /dev/null; then
-    if vim --version | head -n1 | grep -q '7.[^012]\|8\.'; then
+    if vim --version | head -n1 | grep -q '7.[^012]\|8\.|9\.'; then
       pushd $HOME > /dev/null
       git clone git@github.com:xa4a/vimfiles.git .vim > /dev/null
       ln -s .vim/vimrc .vimrc

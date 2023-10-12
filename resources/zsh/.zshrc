@@ -68,7 +68,7 @@ alias gb="git branch"
 alias k=kubectl
 export EDITOR=vim
 
-alias reload="source ~/.zsh/.zshrc"
+alias reload="source ~/.zshrc"
 alias cat=bat
 
 alias vi=vim
@@ -83,26 +83,16 @@ export EDITOR=$MVIM
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jenia.varavva/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jenia.varavva/google-cloud-sdk/path.zsh.inc'; fi
-alias reload="source ~/.zsh/.zshrc"
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/jenia.varavva/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jenia.varavva/google-cloud-sdk/completion.zsh.inc'; fi
-
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/jenia.varavva/local/bin/terraform terraform
 
-ZELLIJ_AUTO_ATTACH=true
-eval "$(zellij setup --generate-auto-start zsh)"
-function zr () { zellij run --name "$*" -- zsh -ic "$*";}
-function zrf () { zellij run --name "$*" --floating -- zsh -ic "$*";}
-function ze () { zellij edit "$*";}
-function zef () { zellij edit --floating "$*";}
+[[ -f "$HOME/.zprofile" ]] && builtin source "$HOME/.zprofile"
+[[ -f "$HOME/.zshrc" ]] && builtin source "$HOME/.zshrc"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(direnv hook zsh)"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
